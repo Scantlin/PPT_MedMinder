@@ -1,1487 +1,1298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedMinder | Investor Pitch Deck</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedMinder | AI Medication Adherence System</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg1:#07111f;
+    --bg2:#0d1b2a;
+    --bg3:#112d42;
+    --cyan:#31d7ff;
+    --blue:#4ea8de;
+    --soft:#c9d8e5;
+    --glass:rgba(255,255,255,0.05);
+    --border:rgba(255,255,255,0.08);
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+    overflow:hidden;
+    color:white;
+}
+
+/* ================= BACKGROUND ================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+    animation:bgShift 18s ease-in-out infinite;
+}
+
+@keyframes bgShift{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.04);}
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.35;
+    animation:float 14s infinite ease-in-out;
+}
+
+.orb1{
+    width:420px;
+    height:420px;
+    background:#31d7ff;
+    top:-140px;
+    left:-120px;
+}
+
+.orb2{
+    width:320px;
+    height:320px;
+    background:#2b7fff;
+    bottom:-100px;
+    right:-60px;
+    animation-delay:3s;
+}
+
+.orb3{
+    width:250px;
+    height:250px;
+    background:#00b4d8;
+    top:40%;
+    right:20%;
+    animation-delay:5s;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-35px);
+    }
+}
+
+/* ================= DECK ================= */
+
+.deck{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slides{
+    display:flex;
+    width:1300vw;
+    height:100vh;
+    transition:transform 1s cubic-bezier(.2,.9,.4,1);
+}
+
+.slide{
+    width:100vw;
+    height:100vh;
+    padding:35px 55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+
+    position:relative;
+    opacity:.25;
+    transform:scale(.96);
+    filter:blur(10px);
+
+    transition:
+    opacity .9s cubic-bezier(.2,.9,.4,1),
+    transform .9s cubic-bezier(.2,.9,.4,1),
+    filter .9s ease;
+}
+
+.slide.current{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+}
+
+.slide::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top left,
+    rgba(49,215,255,.08),
+    transparent 40%);
+    opacity:0;
+    transition:opacity 1.2s ease;
+}
+
+.slide.current::before{
+    opacity:1;
+}
+
+.content{
+    width:100%;
+    max-width:1250px;
+}
+
+.hero{
+    text-align:center;
+}
+
+h1{
+    font-size:4.2rem;
+    font-weight:900;
+    line-height:1.1;
+    letter-spacing:-2px;
+}
+
+h2{
+    font-size:2.5rem;
+    margin-bottom:22px;
+    font-weight:800;
+}
+
+h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+p{
+    color:var(--soft);
+    line-height:1.5;
+    font-size:.92rem;
+}
+
+.gradient{
+    background:linear-gradient(135deg,#ffffff,#7fe7ff,#31d7ff);
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    margin-top:20px;
+    font-size:1.1rem;
+    max-width:850px;
+    margin-inline:auto;
+}
+
+/* ================= ICON ================= */
+
+.pill-icon{
+    width:115px;
+    height:115px;
+    border-radius:35px;
+    background:linear-gradient(145deg,#1d4ed8,#31d7ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 28px;
+    box-shadow:0 0 35px rgba(49,215,255,.45);
+}
+
+.pill-icon i{
+    font-size:3rem;
+}
+
+/* ================= GLASS ================= */
+
+.glass{
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
+    border-radius:24px;
+    padding:22px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature i{
+    font-size:2rem;
+    color:var(--cyan);
+    margin-bottom:15px;
+}
+
+.stat{
+    font-size:3rem;
+    font-weight:900;
+    color:var(--cyan);
+    margin-bottom:12px;
+}
+
+/* ================= VIDEO SLIDE ================= */
+
+.video-container{
+    width:100%;
+    max-width:900px;
+    margin:25px auto 0;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 40px rgba(49,215,255,0.2);
+    position:relative;
+    z-index:10;
+}
+
+.video-container video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    background:black;
+}
+
+.slide.current .video-container{
+    opacity:1 !important;
+    filter:none !important;
+    transform:none !important;
+}
+
+/* ================= TIMELINE ================= */
+
+.timeline{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+    margin-top:35px;
+}
+
+.step{
+    text-align:center;
+    position:relative;
+    padding:10px;
+}
+
+/* REMOVE RECTANGLE GLOW */
+
+.step.highlight{
+    animation:none !important;
+    box-shadow:none !important;
+    background:none !important;
+}
+
+/* CIRCLE DESIGN */
+
+.step-circle{
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    background:rgba(49,215,255,.08);
+    border:2px solid rgba(49,215,255,.4);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 16px;
+
+    font-size:1.8rem;
+    color:var(--cyan);
+
+    transition:all .5s ease;
+
+    backdrop-filter:blur(10px);
+}
+
+/* ONLY CIRCLE GLOWS */
+
+.step.active .step-circle{
+    animation:circleGlow .8s cubic-bezier(.2,.9,.4,1);
+}
+
+@keyframes circleGlow{
+
+    0%{
+        transform:scale(.4);
+        opacity:0;
+        box-shadow:0 0 0 rgba(49,215,255,0);
     }
 
-    :root {
-      --bg1: #07111f;
-      --bg2: #0d1b2a;
-      --bg3: #112d42;
-      --cyan: #31d7ff;
-      --blue: #4ea8de;
-      --white: #ffffff;
-      --soft: #c9d8e5;
-      --glass: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.08);
-      --glow: rgba(49,215,255,0.45);
+    60%{
+        transform:scale(1.15);
+
+        box-shadow:
+        0 0 40px rgba(49,215,255,.9),
+        0 0 80px rgba(49,215,255,.25);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-      overflow: hidden;
-      color: white;
+    100%{
+        transform:scale(1);
+
+        box-shadow:
+        0 0 20px rgba(49,215,255,.35);
     }
 
-    /* Highlight animation for slide elements */
-.highlight {
-  animation: highlightGlow 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
-@keyframes highlightGlow {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(49, 215, 255, 0);
-    border-color: transparent;
-  }
-  30% {
-    transform: scale(1.02);
-    box-shadow: 0 0 0 6px rgba(49, 215, 255, 0);
-    border-color: transparent;
-  }
-  70% {
-    transform: scale(1.01);
-    box-shadow: 0 0 0 3px rgba(49, 215, 255, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(49, 215, 255, 0);
-    border-color: transparent;
-  }
+.step h3{
+    font-size:1rem;
+    margin-bottom:8px;
 }
 
-/* =========================================================
-   CINEMATIC HIGHLIGHT SYSTEM
-========================================================= */
-
-.reveal {
-  opacity: 0.15;
-  transform: scale(0.96) translateY(20px);
-  filter: blur(6px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(.22,1,.36,1),
-    filter 0.8s ease;
+.step p{
+    font-size:.82rem;
+    color:var(--soft);
 }
 
-/* ACTIVE REVEAL */
-.active {
-  opacity: 1 !important;
-  transform: scale(1) translateY(0) !important;
-  filter: blur(0) !important;
-}
+/* MOBILE */
 
-/* =========================================================
-   GLOWING CARD HIGHLIGHT
-========================================================= */
+@media(max-width:1000px){
 
-.highlight {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* Glow pulse */
-.highlight::before {
-  content: '';
-
-  position: absolute;
-  inset: -2px;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(49,215,255,0),
-      rgba(78,168,222,0),
-      rgba(49,215,255,0)
-    );
-
-  z-index: -2;
-
-  animation:
-    glowPulse 1.4s ease forwards;
-}
-
-/* Moving shimmer */
-.highlight::after {
-  content: '';
-
-  position: absolute;
-  top: -120%;
-  left: -40%;
-
-  width: 40%;
-  height: 300%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.55),
-      transparent
-    );
-
-  transform: rotate(25deg);
-
-  animation:
-    shimmer 1.4s ease forwards;
-
-  z-index: 3;
-}
-
-/* =========================================================
-   HERO TEXT GLOW
-========================================================= */
-
-.hero-highlight {
-  animation: heroReveal 1.4s cubic-bezier(.22,1,.36,1);
-}
-
-@keyframes heroReveal {
-
-  0% {
-    opacity: 0;
-    transform: scale(0.92) translateY(30px);
-    filter: blur(12px);
-
-    text-shadow:
-      0 0 0px rgba(49,215,255,0);
-  }
-
-  50% {
-    opacity: 1;
-
-    text-shadow:
-      0 0 25px rgba(49,215,255,0.9),
-      0 0 55px rgba(49,215,255,0.45);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-
-    text-shadow:
-      0 0 10px rgba(49,215,255,0.35);
-  }
+    .timeline{
+        grid-template-columns:repeat(2,1fr);
+    }
 
 }
 
-/* =========================================================
-   ICON PULSE
-========================================================= */
+@media(max-width:700px){
 
-.pulse-highlight {
-  animation: iconPulse 1s cubic-bezier(.22,1,.36,1);
-}
-
-@keyframes iconPulse {
-
-  0% {
-    transform: scale(0.7) rotate(-8deg);
-    opacity: 0;
-    filter: blur(10px);
-  }
-
-  45% {
-    transform: scale(1.15) rotate(3deg);
-
-    box-shadow:
-      0 0 30px rgba(49,215,255,0.9),
-      0 0 70px rgba(49,215,255,0.5);
-  }
-
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-    filter: blur(0);
-
-    box-shadow:
-      0 0 25px rgba(49,215,255,0.4);
-  }
+    .timeline{
+        grid-template-columns:1fr;
+    }
 
 }
+/* ================= MARKET ================= */
 
-/* =========================================================
-   GLOW ANIMATIONS
-========================================================= */
-
-@keyframes glowPulse {
-
-  0% {
-    opacity: 0;
-    filter: blur(15px);
-    transform: scale(0.96);
-  }
-
-  40% {
-    opacity: 1;
-    filter: blur(2px);
-
-    box-shadow:
-      0 0 30px rgba(49,215,255,0.7),
-      0 0 80px rgba(49,215,255,0.35);
-  }
-
-  100% {
-    opacity: 0;
-    filter: blur(8px);
-    transform: scale(1.02);
-  }
-
+.market{
+    display:flex;
+    align-items:flex-end;
+    gap:35px;
+    height:280px;
+    margin-top:30px;
 }
 
-@keyframes shimmer {
-
-  0% {
-    left: -60%;
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  100% {
-    left: 160%;
-    opacity: 0;
-  }
-
+.bar{
+    flex:1;
+    background:linear-gradient(to top,#1d4ed8,#31d7ff);
+    border-radius:20px 20px 0 0;
+    position:relative;
 }
 
-/* =========================================================
-   MARKET BAR ANIMATION
-========================================================= */
-
-.bar.active {
-  animation:
-    marketGrow 1s cubic-bezier(.22,1,.36,1);
+.bar span{
+    position:absolute;
+    top:-38px;
+    left:50%;
+    transform:translateX(-50%);
+    font-weight:800;
 }
 
-@keyframes marketGrow {
+/* ================= REVENUE ================= */
 
-  0% {
+.revenue{
+    text-align:center;
+    padding:26px 20px;
+}
+
+.price{
+    font-size:2.2rem;
+    font-weight:900;
+    color:var(--cyan);
+    margin:12px 0;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    margin-top:35px;
+    display:inline-flex;
+    gap:12px;
+    align-items:center;
+    padding:15px 34px;
+    border-radius:60px;
+    background:linear-gradient(95deg,#31d7ff,#4ea8de);
+    color:#07111f;
+    text-decoration:none;
+    font-weight:800;
+}
+
+/* ================= SOURCE ================= */
+
+.source{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    color:#8ba0b5;
+    font-size:.72rem;
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+    opacity:0;
     transform:
-      scaleY(0.1)
-      translateY(100px);
+    translateY(40px)
+    scale(.92)
+    rotateX(12deg);
 
-    opacity: 0;
-    filter: blur(10px);
-  }
+    filter:blur(12px);
 
-  60% {
+    transition:
+    opacity .9s cubic-bezier(.2,.9,.4,1),
+    transform .9s cubic-bezier(.2,.9,.4,1),
+    filter .9s ease;
+}
+
+.active{
+    opacity:1 !important;
+
     transform:
-      scaleY(1.08)
-      translateY(-8px);
-  }
+    translateY(0)
+    scale(1)
+    rotateX(0deg) !important;
 
-  100% {
-    transform:
-      scaleY(1)
-      translateY(0);
+    filter:blur(0) !important;
+}
 
-    opacity: 1;
-    filter: blur(0);
-  }
+/* ================= CARD POP ================= */
+
+.highlight{
+    animation:premiumPop .8s cubic-bezier(.2,.9,.4,1);
+}
+
+@keyframes premiumPop{
+
+    0%{
+        transform:scale(.9) translateY(30px);
+        opacity:0;
+    }
+
+    50%{
+        transform:scale(1.03) translateY(-5px);
+        box-shadow:
+        0 0 40px rgba(49,215,255,.45),
+        0 0 80px rgba(49,215,255,.15);
+    }
+
+    100%{
+        transform:scale(1) translateY(0);
+        opacity:1;
+    }
+}
+
+/* ================= TEXT GLOW ================= */
+
+.gradient.active,
+h1.active,
+h2.active{
+    animation:textGlow 1s ease;
+}
+
+@keyframes textGlow{
+
+    0%{
+        opacity:0;
+        transform:translateY(30px);
+        text-shadow:0 0 0 rgba(49,215,255,0);
+    }
+
+    50%{
+        text-shadow:
+        0 0 30px rgba(49,215,255,.8),
+        0 0 60px rgba(49,215,255,.4);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        text-shadow:
+        0 0 10px rgba(49,215,255,.25);
+    }
+}
+
+/* ================= ICON BURST ================= */
+
+.pill-icon.active{
+    animation:iconBurst .9s cubic-bezier(.2,.9,.4,1);
+}
+
+@keyframes iconBurst{
+
+    0%{
+        transform:scale(.5) rotate(-12deg);
+        opacity:0;
+        filter:blur(10px);
+    }
+
+    50%{
+        transform:scale(1.12) rotate(3deg);
+
+        box-shadow:
+        0 0 50px rgba(49,215,255,.9),
+        0 0 100px rgba(49,215,255,.25);
+    }
+
+    100%{
+        transform:scale(1) rotate(0deg);
+        opacity:1;
+    }
+}
+
+/* ================= TIMELINE ================= */
+
+.step.active .step-circle{
+    animation:stepBurst .8s cubic-bezier(.2,.9,.4,1);
+}
+
+@keyframes stepBurst{
+
+    0%{
+        transform:scale(.3);
+        opacity:0;
+    }
+
+    60%{
+        transform:scale(1.15);
+
+        box-shadow:
+        0 0 50px rgba(49,215,255,.9),
+        0 0 100px rgba(49,215,255,.25);
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* ================= BAR ANIMATION ================= */
+
+.bar.active{
+    animation:barRise 1s cubic-bezier(.2,.9,.4,1);
+    transform-origin:bottom;
+}
+
+@keyframes barRise{
+
+    0%{
+        transform:
+        scaleY(.08)
+        translateY(120px);
+
+        opacity:0;
+        filter:blur(8px);
+    }
+
+    70%{
+        transform:
+        scaleY(1.05)
+        translateY(-5px);
+    }
+
+    100%{
+        transform:
+        scaleY(1)
+        translateY(0);
+
+        opacity:1;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .slide{
+        padding:20px;
+    }
+
+    h1{
+        font-size:2.5rem;
+    }
+
+    h2{
+        font-size:1.8rem;
+    }
+
+    .grid-2,
+    .grid-3{
+        grid-template-columns:1fr;
+    }
+
+    .timeline{
+        flex-direction:column;
+    }
+
+    .timeline::before{
+        display:none;
+    }
 
 }
 
-/* =========================================================
-   STEP CIRCLE GLOW
-========================================================= */
-
-.step.active .step-circle {
-
-  animation:
-    stepReveal 1s cubic-bezier(.22,1,.36,1);
-
-}
-
-@keyframes stepReveal {
-
-  0% {
-    transform: scale(0.4);
-    opacity: 0;
-    filter: blur(10px);
-  }
-
-  60% {
-    transform: scale(1.18);
-
-    box-shadow:
-      0 0 40px rgba(49,215,255,0.9),
-      0 0 80px rgba(49,215,255,0.45);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    filter: blur(0);
-  }
-
-}
-
-    .background {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.35;
-      animation: float 12s infinite ease-in-out;
-    }
-
-    .orb1 {
-      width: 400px;
-      height: 400px;
-      background: var(--cyan);
-      top: -120px;
-      left: -120px;
-    }
-
-    .orb2 {
-      width: 300px;
-      height: 300px;
-      background: #2b7fff;
-      bottom: -100px;
-      right: -50px;
-      animation-delay: 3s;
-    }
-
-    .orb3 {
-      width: 260px;
-      height: 260px;
-      background: #00b4d8;
-      top: 40%;
-      right: 20%;
-      animation-delay: 6s;
-    }
-
-    @keyframes float {
-      0%,100% {
-        transform: translateY(0px) translateX(0px);
-      }
-      50% {
-        transform: translateY(-30px) translateX(20px);
-      }
-    }
-
-    .deck {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .slides {
-      display: flex;
-      width: 900%;
-      height: 100%;
-      transition: transform 0.9s cubic-bezier(.22,1,.36,1);
-    }
-
-    .slide {
-      width: 100vw;
-      height: 100vh;
-      padding: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .content {
-      width: 100%;
-      max-width: 1250px;
-      animation: slideReveal 0.8s ease;
-    }
-
-    @keyframes slideReveal {
-      from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    h1 {
-      font-size: 5rem;
-      line-height: 1;
-      font-weight: 900;
-      margin-bottom: 24px;
-      letter-spacing: -3px;
-    }
-
-    h2 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      font-weight: 800;
-    }
-
-    h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--soft);
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
-
-    .gradient {
-      background: linear-gradient(90deg, #ffffff, #6ee7ff);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero {
-      text-align: center;
-    }
-
-    .hero p {
-      max-width: 850px;
-      margin: auto;
-      font-size: 1.3rem;
-    }
-
-    .pill-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 35px;
-      background: linear-gradient(145deg, #1d4ed8, #31d7ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 40px;
-      box-shadow: 0 0 40px var(--glow);
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .glass {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .stat {
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--cyan);
-      margin-bottom: 10px;
-    }
-
-    .feature {
-      transition: 0.3s ease;
-    }
-
-    .feature:hover {
-      transform: translateY(-8px);
-      border-color: rgba(49,215,255,0.35);
-      box-shadow: 0 0 30px rgba(49,215,255,0.15);
-    }
-
-    .feature i {
-      font-size: 2rem;
-      color: var(--cyan);
-      margin-bottom: 18px;
-    }
-
-    /* =========================================================
-   TIMELINE STEP ANIMATION
-========================================================= */
-
-.timeline-highlight .step-circle {
-
-  animation:
-    medPulse 1.2s cubic-bezier(.22,1,.36,1);
-
-}
-
-/* Circle glow only */
-@keyframes medPulse {
-
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-    filter: blur(10px);
-
-    box-shadow:
-      0 0 0 rgba(49,215,255,0);
-  }
-
-  45% {
-
-    transform: scale(1.18);
-
-    box-shadow:
-      0 0 30px rgba(49,215,255,0.95),
-      0 0 70px rgba(49,215,255,0.45),
-      0 0 120px rgba(49,215,255,0.2);
-
-  }
-
-  100% {
-
-    transform: scale(1);
-
-    opacity: 1;
-    filter: blur(0);
-
-    box-shadow:
-      0 0 20px rgba(49,215,255,0.45);
-
-  }
-
-}
-
-/* Icon glow */
-.timeline-highlight .step-circle i {
-
-  animation:
-    iconFlash 1s ease;
-
-}
-
-@keyframes iconFlash {
-
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-
-  60% {
-    transform: scale(1.25);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-}
-
-/* Optional text fade */
-.timeline-highlight h3,
-.timeline-highlight p {
-
-  animation:
-    textRise 0.8s ease;
-
-}
-
-@keyframes textRise {
-
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-    .timeline {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      position: relative;
-      margin-top: 50px;
-    }
-
-    .timeline::before {
-        content: '';
-        position: absolute;
-        top: 45px;
-        left: 10%;
-        width: 80%;
-        height: 4px;
-        background: linear-gradient(to right, var(--cyan), #4ea8de);
-        z-index: 0;  /* ← ADD THIS - sends line to back */
-    }
-
-    .step-circle {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: rgba(49,215,255,0.12);
-        border: 2px solid rgba(49,215,255,0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: auto auto 20px;
-        font-size: 2rem;
-        color: var(--cyan);
-        box-shadow: 0 0 30px rgba(49,215,255,0.2);
-        position: relative;  /* ← ADD THIS */
-        z-index: 1;  /* ← ADD THIS - brings circles to front */
-        background: var(--bg2);  /* ← ADD THIS - gives circles solid background */
-    }
-
-
-    .market {
-      display: flex;
-      align-items: end;
-      gap: 30px;
-      height: 320px;
-      margin-top: 40px;
-    }
-
-    .bar {
-      flex: 1;
-      background: linear-gradient(to top, #1d4ed8, #31d7ff);
-      border-radius: 24px 24px 0 0;
-      position: relative;
-      animation: grow 1.2s ease;
-    }
-
-    @keyframes grow {
-      from {
-        height: 0;
-      }
-    }
-
-    .bar span {
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-weight: 700;
-    }
-
-    .revenue {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .price {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--cyan);
-      margin: 20px 0;
-    }
-
-    .cta {
-      margin-top: 35px;
-      display: inline-flex;
-      gap: 12px;
-      align-items: center;
-      padding: 18px 32px;
-      border-radius: 100px;
-      background: linear-gradient(90deg, #31d7ff, #4ea8de);
-      color: black;
-      font-weight: 800;
-      text-decoration: none;
-      transition: 0.3s ease;
-    }
-
-    .cta:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 10px 30px rgba(49,215,255,0.3);
-    }
-
-    .nav {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      z-index: 999;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.2);
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .dot.active {
-      width: 42px;
-      background: var(--cyan);
-      box-shadow: 0 0 14px rgba(49,215,255,0.5);
-    }
-
-    .controls {
-      position: fixed;
-      right: 30px;
-      bottom: 30px;
-      display: flex;
-      gap: 12px;
-      z-index: 999;
-    }
-
-    .btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.08);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: 0.3s ease;
-      font-size: 1.1rem;
-    }
-
-    .btn:hover {
-      background: rgba(49,215,255,0.18);
-      transform: scale(1.08);
-    }
-
-    @media(max-width: 900px) {
-      .slide {
-        padding: 30px;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      h2 {
-        font-size: 2rem;
-      }
-
-      .grid-2,
-      .grid-3,
-      .timeline {
-        grid-template-columns: 1fr;
-        display: grid;
-      }
-
-      .step {
-        width: 100%;
-      }
-
-      .timeline::before {
-        display: none;
-      }
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
 <div class="background">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 </div>
 
 <div class="deck">
+<div class="slides" id="slides">
 
-  <div class="slides" id="slides">
-    
-    <!-- <section class="slide">
-        <div class="content hero">
-            <div class="pill-icon">
-            <i class="fas fa-your-icon fa-3x"></i>
-        </div>
-        <h1 class="gradient">Your Big Title</h1>
-        <p>Your supporting text here</p>
-        </div>
-    </section> -->
-
-    <section class="slide">
-        <div class="content hero">
-            <div class="pill-icon">
-            <i class="fas fa-your-icon fa-3x"></i>
-        </div>
-        <h1 class="gradient">MEDMINDER</h1>
-        <p>Never Miss a Dose</p>
-        </div>
-    </section>
-    
-    <!-- SLIDE 1 -->
-    <section class="slide">
-      <div class="content hero">
-
-        <div class="pill-icon">
-          <i class="fas fa-pills fa-3x"></i>
-        </div>
-
-        <h1 class="gradient">
-          Medication adherence<br>
-          saves lives.
-        </h1>
-
-        <p>
-          MedMinder is an AI-powered healthcare companion that automatically dispenses medication,
-          verifies intake, and alerts caregivers in real time.
-        </p>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 2 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>The Problem</h2>
-
-        <div class="grid-3">
-
-          <div class="glass feature">
-            <div class="stat">50%</div>
-            <h3>Patients miss medication</h3>
-            <p>Non-adherence is one of the biggest healthcare challenges worldwide.</p>
-          </div>
-
-          <div class="glass feature">
-            <div class="stat">$290B</div>
-            <h3>Annual healthcare losses</h3>
-            <p>Missed medication causes avoidable hospitalization and treatment costs.</p>
-          </div>
-
-          <div class="glass feature">
-            <div class="stat">125K</div>
-            <h3>Preventable deaths</h3>
-            <p>Medication non-compliance contributes to thousands of deaths yearly.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 3 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>Meet MedMinder</h2>
-
-        <div class="grid-2">
-
-          <div class="glass" style="display:flex;align-items:center;justify-content:center;min-height:420px;">
-            <div style="text-align:center;">
-              <i class="fas fa-capsules" style="font-size:7rem;color:#31d7ff;margin-bottom:25px;"></i>
-              <h3>Smart Medication Companion</h3>
-              <p>AI-powered automated healthcare monitoring system.</p>
-            </div>
-          </div>
-
-          <div class="grid-2">
-
-            <div class="glass feature" id="faceCard">
-              <i class="fas fa-camera"></i>
-              <h3>Face Recognition</h3>
-              <p>Verifies patient identity before dispensing medication.</p>
-            </div>
-
-            <div class="glass feature" id="alertCard">
-              <i class="fas fa-bell"></i>
-              <h3>Smart Alerts</h3>
-              <p>SMS reminders and escalation notifications.</p>
-            </div>
-
-            <div class="glass feature" id="vitalCard">
-              <i class="fas fa-heart-pulse"></i>
-              <h3>Vital Monitoring</h3>
-              <p>Tracks heart rate and oxygen saturation.</p>
-            </div>
-
-            <div class="glass feature" id="intakeCard">
-              <i class="fas fa-hand"></i>
-              <h3>Intake Verification</h3>
-              <p>Detects hand-to-mouth movement for confirmation.</p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 4 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>How It Works</h2>
-
-        <div class="timeline">
-
-          <div class="step">
-            <div class="step-circle">
-              <i class="fas fa-user-check"></i>
-            </div>
-            <h3>Detect User</h3>
-            <p>Camera verifies the patient identity.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-circle">
-              <i class="fas fa-pills"></i>
-            </div>
-            <h3>Dispense Medication</h3>
-            <p>Automated servo system releases medication.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-circle">
-              <i class="fas fa-hand"></i>
-            </div>
-            <h3>Confirm Intake</h3>
-            <p>Gesture tracking confirms medication intake.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-circle">
-              <i class="fas fa-sms"></i>
-            </div>
-            <h3>Notify Caregiver</h3>
-            <p>Automatic alerts sent through GSM SMS.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 5 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>Market Opportunity</h2>
-
-        <div class="market">
-          <div class="bar" style="height: 35%;">
-            <span>$6B</span>
-          </div>
-          <div class="bar" style="height: 60%;">
-            <span>$10B</span>
-          </div>
-          <div class="bar" style="height: 85%;">
-            <span>$16.5B</span>
-          </div>
-        </div>
-
-        <div style="margin-top:40px;display:flex;justify-content:space-between;color:#c9d8e5;font-weight:600;">
-          <span>2025</span>
-          <span>2028</span>
-          <span>2032</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 6 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>Why We Win</h2>
-
-        <div class="grid-2">
-
-          <div class="glass feature">
-            <i class="fas fa-user-shield"></i>
-            <h3>Face Verification</h3>
-            <p>No fake confirmations — physical presence required.</p>
-          </div>
-
-          <div class="glass feature">
-            <i class="fas fa-wifi"></i>
-            <h3>Offline GSM Alerts</h3>
-            <p>Works even without WiFi connection.</p>
-          </div>
-
-          <div class="glass feature">
-            <i class="fas fa-hand-point-up"></i>
-            <h3>Gesture Confirmation</h3>
-            <p>Confirms pills were actually taken.</p>
-          </div>
-
-          <div class="glass feature">
-            <i class="fas fa-heart-circle-check"></i>
-            <h3>Integrated Vital Signs</h3>
-            <p>Tracks health metrics alongside medication adherence.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 7 -->
-    <section class="slide">
-      <div class="content">
-
-        <h2>Business Model</h2>
-
-        <div class="grid-3">
-
-          <div class="glass revenue">
-            <i class="fas fa-box" style="font-size:2.5rem;color:#31d7ff"></i>
-            <h3>Hardware Sales</h3>
-            <div class="price">₱2,500</div>
-            <p>Smart healthcare companion device.</p>
-          </div>
-
-          <div class="glass revenue">
-            <i class="fas fa-cloud" style="font-size:2.5rem;color:#31d7ff"></i>
-            <h3>Subscription</h3>
-            <div class="price">₱199</div>
-            <p>Monthly cloud monitoring and analytics.</p>
-          </div>
-
-          <div class="glass revenue">
-            <i class="fas fa-hospital" style="font-size:2.5rem;color:#31d7ff"></i>
-            <h3>Institutions</h3>
-            <div class="price">B2B</div>
-            <p>Hospitals, nursing homes, and LGUs.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SLIDE 8 -->
-    <section class="slide">
-      <div class="content hero">
-
-        <h1 class="gradient">
-          We’re not just reminding patients<br>
-          to take medicine.
-        </h1>
-
-        <h2 style="margin-top:20px;">
-          We’re protecting lives.
-        </h2>
-
-        <p>
-          Seeking partnerships, pilot institutions, and early investors
-          to scale smarter healthcare monitoring.
-        </p>
-
-        <a class="cta" href="#">
-          <i class="fas fa-envelope"></i>
-          Contact MedMinder
-        </a>
-
-      </div>
-    </section>
-
-  </div>
+<section class="slide current">
+<div class="content hero">
+
+<h1 class="gradient reveal">
+Good Afternoon Everyone<br>
+</h1>
+
+<p class="reveal">
+Welcome to our sales pitch!
+Group 1
+</p>
+
+</div>
+</section>
+
+<!-- SLIDE 1 -->
+<section class="slide">
+<div class="content hero">
+
+<div class="pill-icon reveal">
+<i class="fas fa-exclamation-triangle"></i>
+</div>
+
+<h1 class="gradient reveal">
+What happens<br>
+when patients miss medicine?
+</h1>
+
+<p class="reveal">
+Missed meds → worse sickness → ER/hospital → $8,900 cost/year OR DEATH.
+</p>
+
+</div>
+</section>
+
+<!-- SLIDE 2 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>The Global Crisis</h2>
+
+<div class="grid-3">
+
+<div class="glass feature reveal">
+<div class="stat">50%</div>
+<h3>Patients Miss Doses</h3>
+<p>Half of chronic patients fail to follow prescriptions properly.</p>
+</div>
+
+<div class="glass feature reveal">
+<div class="stat">$290B</div>
+<h3>Healthcare Cost</h3>
+<p>Medication non-adherence creates billions in avoidable expenses.</p>
+</div>
+
+<div class="glass feature reveal">
+<div class="stat">125K</div>
+<h3>Preventable Deaths</h3>
+<p>Non-adherence is among the leading causes of preventable mortality.</p>
+</div>
 
 </div>
 
-<!-- <div class="nav" id="nav"></div>
+<div class="source">
+WHO • CDC • NEJM • Grand View Research
+</div>
 
-<div class="controls">
-  <div class="btn" id="prev">
-    <i class="fas fa-chevron-left"></i>
-  </div>
-  <div class="btn" id="next">
-    <i class="fas fa-chevron-right"></i>
-  </div>
-</div> -->
+</div>
+</section>
+
+<section class="slide">
+<div class="content">
+<h2 class="reveal" style="margin-bottom:12px;">🔍 Analysis: Why Adherence Fails</h2>
+<p class="reveal" style="margin-bottom:32px; font-size:0.95rem;">Beyond forgetfulness — Unpacking systemic & behavioral drivers</p>
+
+<div class="grid-2" style="gap:26px;">
+
+<div class="insight-card reveal">
+<div class="badge-risk">PRIMARY DRIVER</div>
+<div class="stat-detail" style="margin-top:10px;">43%</div>
+<p style="font-weight:600; margin:8px 0 4px;">Intentional non-adherence</p>
+<p>Patients skip doses due to side effects, disbelief in treatment, or cost burden.</p>
+</div>
+
+<div class="insight-card reveal">
+<div class="badge-risk">SECONDARY DRIVER</div>
+<div class="stat-detail" style="margin-top:10px;">30%</div>
+<p style="font-weight:600; margin:8px 0 4px;">Cognitive & forgetfulness</p>
+<p>Elderly patients and those with polypharmacy struggle to track complex regimens.</p>
+</div>
+
+<div class="insight-card reveal">
+<div class="badge-risk">SYSTEM GAP</div>
+<div class="stat-detail" style="margin-top:10px;">67%</div>
+<p style="font-weight:600; margin:8px 0 4px;">No adherence feedback loop</p>
+<p>Caregivers & physicians are unaware of missed doses until ER visit.</p>
+</div>
+
+<div class="insight-card reveal">
+<div class="badge-risk">ECONOMIC BURDEN</div>
+<div class="stat-detail" style="margin-top:10px;">$8,900</div>
+<p style="font-weight:600; margin:8px 0 4px;">Per patient annually</p>
+<p>Avoidable hospitalization costs due to poor adherence (US data).</p>
+</div>
+
+</div>
+
+<div class="glass reveal" style="margin-top:30px; background:rgba(0,0,0,0.25);">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px;">
+<div><i class="fas fa-chart-simple" style="color:#31d7ff; margin-right:8px;"></i> <strong>Adherence drop-off curve:</strong> After 6 months, 45% of chronic patients stop taking medication as prescribed.</div>
+<div><i class="fas fa-hospital-user" style="color:#31d7ff; margin-right:8px;"></i> 1 in 5 hospital readmissions linked to medication mismanagement.</div>
+</div>
+</div>
+
+<p class="source" style="margin-top:25px;">Source: Annals of Internal Medicine • WHO Adherence Report • JAMA Network</p>
+</div>
+</section>
+
+
+<!-- SLIDE 3 -->
+
+<section class="slide">
+<div class="content hero">
+
+<div class="pill-icon reveal">
+<i class="fas fa-pills"></i>
+</div>
+
+<h1 class="gradient reveal">
+MEDMINDER
+</h1>
+
+<!-- <p class="reveal">
+AI-powered medication adherence and healthcare monitoring system.
+</p> -->
+
+</div>
+</section>
+
+<!-- SLIDE 4 -->
+
+<section class="slide">
+<div class="content hero">
+
+<div class="pill-icon reveal">
+<i class="fas fa-heartbeat"></i>
+</div>
+
+<h1 class="gradient reveal">
+Medication adherence<br>
+saves lives.
+</h1>
+
+<p class="reveal">
+Combining AI, facial recognition, gesture tracking, GSM alerts, and vital monitoring into one smart healthcare companion.
+</p>
+
+</div>
+</section>
+
+<!-- SLIDE 5 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>Meet MedMinder</h2>
+
+<div class="grid-2">
+
+<div class="glass reveal" style="display:flex;align-items:center;justify-content:center;min-height:320px;">
+<div style="text-align:center;">
+<i class="fas fa-microchip" style="font-size:5rem;color:#31d7ff;margin-bottom:18px;"></i>
+<h3>Smart Healthcare Ecosystem</h3>
+<p>AI-powered medication monitoring and caregiver support.</p>
+</div>
+</div>
+
+<div class="grid-2">
+
+<div class="glass feature reveal">
+<i class="fas fa-camera"></i>
+<h3>Face Recognition</h3>
+<p>Verifies patient identity before dispensing.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-bell"></i>
+<h3>Smart Alerts</h3>
+<p>SMS and app notifications for caregivers.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-heart-pulse"></i>
+<h3>Vital Monitoring</h3>
+<p>Tracks heart rate and oxygen levels.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-hand-peace"></i>
+<h3>Intake Verification</h3>
+<p>Gesture tracking confirms medication intake.</p>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 6 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>How It Works</h2>
+
+<div class="timeline">
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-mobile-screen"></i>
+</div>
+<h3>Access MedMinder App</h3>
+<p>User opens the MedMinder application.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-user-plus"></i>
+</div>
+<h3>Register User</h3>
+<p>Patient profile and facial data are registered.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-calendar-check"></i>
+</div>
+<h3>Schedule Medicine</h3>
+<p>Medicine schedules and dosage are configured.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-bell"></i>
+</div>
+<h3>Remind User</h3>
+<p>System alerts the patient when medicine is due.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-camera"></i>
+</div>
+<h3>Detect User</h3>
+<p>MedMinder verifies the correct patient using AI.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-pills"></i>
+</div>
+<h3>Dispense</h3>
+<p>Servo-controlled dispenser releases medication.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-hand-peace"></i>
+</div>
+<h3>Confirm Intake</h3>
+<p>Gesture recognition confirms medicine intake.</p>
+</div>
+
+<div class="step reveal">
+<div class="step-circle">
+<i class="fas fa-sms"></i>
+</div>
+<h3>Notify</h3>
+<p>Caregivers receive GSM and app notifications.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 7 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>Market Opportunity</h2>
+
+<div class="market">
+
+<div class="bar reveal" style="height:35%;">
+<span>$5.2B</span>
+</div>
+
+<div class="bar reveal" style="height:62%;">
+<span>$10.8B</span>
+</div>
+
+<div class="bar reveal" style="height:100%;">
+<span>$18.7B</span>
+</div>
+
+</div>
+
+<div style="margin-top:25px;display:flex;justify-content:space-between;font-weight:700;color:#c9d8e5;">
+<span>2025</span>
+<span>2028</span>
+<span>2032</span>
+</div>
+
+<p style="text-align:center;margin-top:18px;">
+28% CAGR growth in smart medication systems.
+</p>
+
+</div>
+</section>
+
+<!-- SLIDE 8 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>Why MedMinder Wins</h2>
+
+<div class="grid-2">
+
+<div class="glass feature reveal">
+<i class="fas fa-user-shield"></i>
+<h3>AI Face Verification</h3>
+<p>Prevents fake medication confirmations.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-wifi-slash"></i>
+<h3>Offline GSM Alerts</h3>
+<p>Works even without WiFi.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-hand-peace"></i>
+<h3>Gesture Tracking</h3>
+<p>Confirms pills are actually taken.</p>
+</div>
+
+<div class="glass feature reveal">
+<i class="fas fa-chart-line"></i>
+<h3>Health Monitoring</h3>
+<p>Combines adherence with vital signs.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 9 -->
+
+<section class="slide">
+<div class="content">
+
+<h2>Business Model</h2>
+
+<div class="grid-2">
+
+<div class="glass revenue reveal">
+<i class="fas fa-box" style="font-size:2.4rem;color:#31d7ff;"></i>
+<h3>Hardware Device</h3>
+<div class="price">₱5,999</div>
+<p>One-time dispenser purchase.</p>
+</div>
+
+<div class="glass revenue reveal">
+<i class="fas fa-building" style="font-size:2.4rem;color:#31d7ff;"></i>
+<h3>Healthcare Partnerships</h3>
+<div class="price">B2B</div>
+<p>Hospitals and healthcare institutions.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SLIDE 10 -->
+
+<section class="slide">
+<div class="content hero">
+
+<h1 class="gradient reveal">
+We’re protecting lives.
+</h1>
+
+<h2 class="reveal" style="margin-top:12px;">
+The future of medication adherence starts here.
+</h2>
+
+<p class="reveal">
+Seeking pilot hospitals, healthcare partners, and investors across Southeast Asia.
+</p>
+
+<a class="cta reveal">
+<i class="fas fa-envelope"></i>
+Contact MedMinder
+</a>
+
+</div>
+</section>
+
+<!-- SLIDE 4: SALES PITCH VIDEO -->
+
+<section class="slide">
+<div class="content hero">
+
+<h2 class="reveal">Watch MedMinder in Action</h2>
+
+<p class="reveal">
+A quick overview of how MedMinder transforms medication adherence using AI, automation, and smart healthcare monitoring.
+</p>
+
+<div class="video-container reveal">
+
+<video id="medminderVideo" muted loop autoplay playsinline controls style="width:100%; height:400px; background:black;">
+  <source src="pitchvid.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+</div>
+</div>
 
 <script>
+
 const slides = document.getElementById('slides');
 const slideElements = document.querySelectorAll('.slide');
-
-const total = slideElements.length;
-
-// Set dynamic width
-slides.style.width = `${total * 100}vw`;
 
 let currentSlide = 0;
 let currentStep = 0;
 
-/*
-|--------------------------------------------------------------------------
-| PRESENTATION STEPS
-|--------------------------------------------------------------------------
-| Each slide has its own sequence of highlights.
-| Clicking NEXT progresses through highlights first.
-| After all highlights are done -> move to next slide.
-|--------------------------------------------------------------------------
-*/
-
-const presentationSteps = [
-
-  // SLIDE 0 - MEDMINDER INTRO
-  [
-    '.pill-icon',
-    '.gradient',
-    'p'
-  ],
-
-  // SLIDE 1 - TAGLINE
-  [
-    '.pill-icon',
-    '.gradient',
-    'p'
-  ],
-
-  // SLIDE 2 - PROBLEM
-  [
-    '.feature:nth-child(1)',
-    '.feature:nth-child(2)',
-    '.feature:nth-child(3)'
-  ],
-
-// SLIDE 3
+const slideAnimations = [
+['.gradient','p'],
+['.pill-icon','.gradient','p'],
+['.feature:nth-child(1)', '.feature:nth-child(2)', '.feature:nth-child(3)'],
+['h2', 'p', '.insight-card:nth-child(1)', '.insight-card:nth-child(2)', '.insight-card:nth-child(3)', '.insight-card:nth-child(4)', '.glass'],
+['.pill-icon','.gradient'],
+['.pill-icon','.gradient', 'p'],
+['.glass','.feature:nth-child(1)', '.feature:nth-child(2)', '.feature:nth-child(3)', '.feature:nth-child(4)'],
 [
-  '.glass:first-child',
-  '#faceCard',
-  '#alertCard',
-  '#vitalCard',
-  '#intakeCard'
+'.step:nth-child(1)',
+'.step:nth-child(2)',
+'.step:nth-child(3)',
+'.step:nth-child(4)',
+'.step:nth-child(5)',
+'.step:nth-child(6)',
+'.step:nth-child(7)',
+'.step:nth-child(8)'
 ],
+['.bar:nth-child(1)', '.bar:nth-child(2)', '.bar:nth-child(3)'],
+['.feature:nth-child(1)', '.feature:nth-child(2)', '.feature:nth-child(3)', '.feature:nth-child(4)'],
+['.revenue:nth-child(1)', '.revenue:nth-child(2)'],
+['.gradient','h2','p','.cta'],
+['h2', 'p', '.video-container']
 
-  // SLIDE 4 - HOW IT WORKS
-  [
-    '.step:nth-child(1)',
-    '.step:nth-child(2)',
-    '.step:nth-child(3)',
-    '.step:nth-child(4)'
-  ],
-
-  // SLIDE 5 - MARKET
-  [
-    '.bar:nth-child(1)',
-    '.bar:nth-child(2)',
-    '.bar:nth-child(3)'
-  ],
-
-  // SLIDE 6 - WHY WE WIN
-  [
-    '.feature:nth-child(1)',
-    '.feature:nth-child(2)',
-    '.feature:nth-child(3)',
-    '.feature:nth-child(4)'
-  ],
-
-  // SLIDE 7 - BUSINESS MODEL
-  [
-    '.revenue:nth-child(1)',
-    '.revenue:nth-child(2)',
-    '.revenue:nth-child(3)'
-  ],
-
-  // SLIDE 8 - FINAL CTA
-  [
-    '.gradient',
-    'h2',
-    'p',
-    '.cta'
-  ]
 ];
 
+function updateCurrentSlide(){
 
-/*
-|--------------------------------------------------------------------------
-| INITIALIZE
-|--------------------------------------------------------------------------
-*/
+    document.querySelectorAll('.slide').forEach(slide=>{
+        slide.classList.remove('current');
+    });
 
-function initSlides() {
+    slideElements[currentSlide].classList.add('current');
 
-  slideElements.forEach((slide, index) => {
+}
 
-    const selectors = presentationSteps[index];
+function resetSlide(index){
 
-    if (!selectors) return;
+    const slide = slideElements[index];
 
-    selectors.forEach(selector => {
+    slide.querySelectorAll('.active').forEach(el=>{
 
-      slide.querySelectorAll(selector).forEach(el => {
-
-        el.style.opacity = '0.2';
-        el.style.transform = 'scale(0.96)';
-        el.style.transition = 'all 0.5s ease';
-
-      });
+        el.classList.remove('active','highlight');
+        el.classList.add('reveal');
 
     });
 
-  });
-
 }
 
-initSlides();
+function showStep(){
 
+    const slide = slideElements[currentSlide];
+    const steps = slideAnimations[currentSlide];
 
-/*
-|--------------------------------------------------------------------------
-| HIGHLIGHT ELEMENT
-|--------------------------------------------------------------------------
-*/
+    if(currentStep < steps.length){
 
-  // remove old temporary animations
-function highlightElement(el) {
+        const selector = steps[currentStep];
+        const el = slide.querySelector(selector);
 
-  if (!el) return;
+        if(el){
 
-  // Reset animations
-  el.classList.remove(
-    'highlight',
-    'hero-highlight',
-    'pulse-highlight',
-    'timeline-highlight'
-  );
+            el.classList.remove('reveal');
+            el.classList.add('active');
 
-  void el.offsetWidth;
+            void el.offsetWidth;
 
-  // Keep revealed
-  el.classList.add('active');
+            el.classList.add('highlight');
 
-  // HERO TITLES
-  if (
-    el.classList.contains('gradient') ||
-    el.tagName === 'H1' ||
-    el.tagName === 'H2'
-  ) {
+        }
 
-    el.classList.add('hero-highlight');
+        currentStep++;
 
-  }
+    }
+    else{
 
-  // PILL ICON
-  else if (
-    el.classList.contains('pill-icon')
-  ) {
+        if(currentSlide < slideElements.length - 1){
 
-    el.classList.add('pulse-highlight');
+            resetSlide(currentSlide);
 
-  }
+            currentSlide++;
+            currentStep = 0;
 
-  // TIMELINE STEP
-  else if (
-    el.classList.contains('step')
-  ) {
+            slides.style.transform =
+            `translate3d(-${currentSlide * 100}vw,0,0)`;
 
-    el.classList.add('timeline-highlight');
+            updateCurrentSlide();
 
-  }
-
-  // NORMAL CARDS
-  else {
-
-    el.classList.add('highlight');
-
-  }
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| SHOW CURRENT STEP
-|--------------------------------------------------------------------------
-*/
-
-function showCurrentStep() {
-
-  const slide = slideElements[currentSlide];
-
-  const selectors = presentationSteps[currentSlide];
-
-  if (!selectors) return;
-
-  const selector = selectors[currentStep];
-
-  if (!selector) return;
-
-  // ONLY GET ONE ELEMENT
-  const element = slide.querySelector(selector);
-
-  if (!element) return;
-
-  highlightElement(element);
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| UPDATE SLIDE POSITION
-|--------------------------------------------------------------------------
-*/
-
-function updateSlidePosition() {
-
-  slides.style.transform =
-    `translateX(-${currentSlide * 100}vw)`;
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| NEXT STEP
-|--------------------------------------------------------------------------
-*/
-
-function nextStep() {
-
-  const steps = presentationSteps[currentSlide];
-
-  // SHOW NEXT HIGHLIGHT
-  if (currentStep < steps.length) {
-
-    showCurrentStep();
-    currentStep++;
-
-  }
-
-  // MOVE TO NEXT SLIDE
-  else {
-
-    if (currentSlide < total - 1) {
-
-      currentSlide++;
-      currentStep = 0;
-
-      updateSlidePosition();
+        }
 
     }
 
-  }
+}
+
+function previous(){
+
+    if(currentStep > 1){
+
+        currentStep -= 2;
+
+        resetSlide(currentSlide);
+
+        for(let i=0;i<currentStep;i++){
+
+            const sel = slideAnimations[currentSlide][i];
+            const el = slideElements[currentSlide].querySelector(sel);
+
+            if(el){
+
+                el.classList.remove('reveal');
+                el.classList.add('active');
+
+            }
+
+        }
+
+        currentStep++;
+
+    }
+
+    else if(currentSlide > 0){
+
+        resetSlide(currentSlide);
+
+        currentSlide--;
+        currentStep = 0;
+
+        slides.style.transform =
+        `translate3d(-${currentSlide * 100}vw,0,0)`;
+
+        updateCurrentSlide();
+
+    }
 
 }
 
+/* Keyboard Controls */
 
-/*
-|--------------------------------------------------------------------------
-| PREVIOUS SLIDE
-|--------------------------------------------------------------------------
-*/
+document.addEventListener('keydown',(e)=>{
 
-function prevSlide() {
+    if(e.key === 'ArrowRight' || e.key === ' '){
+        showStep();
+    }
 
-  if (currentSlide > 0) {
-
-    currentSlide--;
-    currentStep = 0;
-
-    updateSlidePosition();
-
-  }
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| KEYBOARD CONTROLS
-|--------------------------------------------------------------------------
-*/
-
-document.addEventListener('keydown', (e) => {
-
-  if (e.key === 'ArrowRight') {
-    nextStep();
-  }
-
-  if (e.key === 'ArrowLeft') {
-    prevSlide();
-  }
+    if(e.key === 'ArrowLeft'){
+        previous();
+    }
 
 });
 
-
-/*
-|--------------------------------------------------------------------------
-| TOUCH SUPPORT
-|--------------------------------------------------------------------------
-*/
+/* Swipe Controls */
 
 let startX = 0;
 
-document.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
+document.addEventListener('touchstart',(e)=>{
 
-document.addEventListener('touchend', (e) => {
-
-  let endX = e.changedTouches[0].clientX;
-
-  if (startX - endX > 50) {
-    nextStep();
-  }
-
-  if (endX - startX > 50) {
-    prevSlide();
-  }
+    startX = e.touches[0].clientX;
 
 });
 
+document.addEventListener('touchend',(e)=>{
 
-/*
-|--------------------------------------------------------------------------
-| BUTTON SUPPORT
-|--------------------------------------------------------------------------
-*/
+    let endX = e.changedTouches[0].clientX;
 
-document.getElementById('next')?.addEventListener('click', nextStep);
+    if(startX - endX > 50){
+        showStep();
+    }
 
-document.getElementById('prev')?.addEventListener('click', prevSlide);
+    if(endX - startX > 50){
+        previous();
+    }
 
+});
 
-/*
-|--------------------------------------------------------------------------
-| START FIRST STEP AUTOMATICALLY
-|--------------------------------------------------------------------------
-*/
+/* Init */
 
-setTimeout(() => {
-  nextStep();
-}, 600);
+updateCurrentSlide();
+
+setTimeout(()=>{
+    showStep();
+},500);
 
 </script>
 
